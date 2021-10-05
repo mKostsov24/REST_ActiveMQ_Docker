@@ -5,7 +5,7 @@
 
 - Spring boot
 
-- Docker
+- Docker compose
 
 - Apache ActiveMQ
 
