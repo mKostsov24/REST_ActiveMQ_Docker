@@ -11,7 +11,6 @@ import java.time.Instant;
 @lombok.Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Data {
     @Id
     @Column(nullable = false)
@@ -22,7 +21,7 @@ public class Data {
     @Column(nullable = false)
     private Instant time;
     @Column(nullable = false)
-    private String  queueName;
+    private String queueName;
     @Column(nullable = false)
     private String bodyMessage;
 
@@ -32,5 +31,4 @@ public class Data {
         this.queueName = queueName;
         this.bodyMessage = bodyMessage;
     }
-
 }

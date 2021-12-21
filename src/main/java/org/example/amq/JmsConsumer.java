@@ -1,5 +1,7 @@
 package org.example.amq;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.model.Data;
 import org.example.repository.DataRepository;
 import org.slf4j.Logger;
@@ -12,16 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class JmsConsumer {
 
     private final DataRepository repository;
-
-    Logger log = LoggerFactory.getLogger(JmsConsumer.class);
-
-    @Autowired
-    public JmsConsumer(DataRepository repository) {
-        this.repository = repository;
-    }
 
     @Async
     @JmsListener(destination = "queue-1")
@@ -39,10 +36,9 @@ public class JmsConsumer {
         receive(realMap, queue);
     }
 
-    public void receive(HashMap<String, String> realMap, String queue){
+    public void receive(HashMap<String, String> realMap, String queue) {
         Data newMessage = new Data(realMap.get("queueName"), realMap.get("bodyMessage"), Integer.parseInt(realMap.get("id")));
         repository.save(newMessage);
         log.info("Received message='{}' , queue - {}", realMap, queue);
     }
-
 }

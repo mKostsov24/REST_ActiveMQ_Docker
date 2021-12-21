@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.dto.OutputLogDataDTO;
 import org.example.model.Data;
 import org.example.service.DataServiceImpl;
@@ -11,14 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class LogController {
 
     private final DataServiceImpl dataService;
-
-    @Autowired
-    public LogController(DataServiceImpl dataService) {
-        this.dataService = dataService;
-    }
 
     @GetMapping
     public List<OutputLogDataDTO> getLogData() {

@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface DataRepository extends JpaRepository<Data, Integer> {
-
     @Query("SELECT d FROM Data d")
     List<Data> getAll();
 
@@ -21,6 +20,4 @@ public interface DataRepository extends JpaRepository<Data, Integer> {
 
     @Query("select d from Data d where d.time between :from and :to ")
     List<Data> getAllByDate(@Param("from") Instant from, @Param("to") Instant to);
-
-
 }
